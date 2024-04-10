@@ -19,7 +19,7 @@ const getOneUSer = (idUser) => {
     return match
         .select('*')
         .from('users')
-        .where({ user_id: idUser }, { cative: true })
+        .where({ user_id: idUser, active: true })
 };
 
 const getProviders = () => {

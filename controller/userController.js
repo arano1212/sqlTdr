@@ -71,8 +71,7 @@ const updateuserController = async(req, res)=>{
 const logicDeleteUserController = async (req, res) => {
     try {
         const idUser = req.params.id;
-        await userMatch.logicDeleteUser(idUser); // Pasa idUser como argumento
-
+        await userMatch.logicDeleteUser(idUser); 
         res.status(204).json();
     } catch (error) {
         console.error(error);
