@@ -27,7 +27,7 @@ const getOneServiceController = async(req, res) =>{
         const idService = req.params.id
         const service = await matchServicesModels.getOneService(idService)
         if (service.length === 0) {
-            res.status(404).json({ message: 'usuario no encontrado' })
+            res.status(404).json({ message: 'servicio no encontrado' })
         } else {
             res.status(200).json(service[0])
         }
