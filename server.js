@@ -8,6 +8,7 @@ apiT.use(express.json());
 
 const userRoutes=require('./routes/usersRoutes');
 const skillRoutes= require('./routes/skillsRoutes');
+const serviceRoutes= require('./routes/servicesRoutes')
 
 
 apiT.get('/', (req, res) => {
@@ -36,6 +37,7 @@ apiT.get('/', (req, res) => {
 
 apiT.use(userRoutes);
 apiT.use(skillRoutes);
+apiT.use(serviceRoutes);
 
 apiT.listen(3000, () => {
     console.log('comencemos con los MATCH', 'server-ON')
