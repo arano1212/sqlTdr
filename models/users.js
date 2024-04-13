@@ -36,7 +36,7 @@ const getEmployers = () => {
         .where({ is_employer: true, active: true })
 };
 
-const updateUser =(idUser, bodyToUpdate) => {
+const updateUser = (idUser, bodyToUpdate) => {
     return match
         .update(bodyToUpdate)
         .from('users')
@@ -44,12 +44,15 @@ const updateUser =(idUser, bodyToUpdate) => {
         .returning('*')
 };
 
-const logicDeleteUser =(idUser)=>{
+const logicDeleteUser = (idUser) => {
     return match
-    .update({active: false})
-    .from('users')
-    .where({user_id : idUser, active: true})  
+        .update({ active: false })
+        .from('users')
+        .where({ user_id: idUser, active: true })
 }
+
+
+
 
 
 module.exports = {
@@ -59,6 +62,7 @@ module.exports = {
     getProviders,
     getEmployers,
     updateUser,
-    logicDeleteUser
+    logicDeleteUser,
+    
 
 }

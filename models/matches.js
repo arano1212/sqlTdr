@@ -36,6 +36,7 @@ const logicDeleteMatch =(idMatch)=>{
     .where({match_id : idMatch, active: true})  
 }
 
+
 module.exports={
     createMatch,
     getAllMatches,

@@ -80,7 +80,6 @@ const logicDeleteUserController = async (req, res) => {
 };
 
 
-
 module.exports={
     createUserController,
     getAllUSerController,
@@ -88,5 +87,5 @@ module.exports={
     getProvidersController,
     getEmployersController,
     updateuserController,
-    logicDeleteUserController
+    logicDeleteUserController,
 }

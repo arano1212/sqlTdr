@@ -63,10 +63,14 @@ const logicDeleteSkillController = async (req, res) => {
     }
 };
 
+
+
+
+
 module.exports={
     createSkillController,
     getAllSkillController,
     getSkillIdController,
     updateSkillController,
-    logicDeleteSkillController
+    logicDeleteSkillController,
 }

@@ -37,10 +37,14 @@ const logicDeleteSkill = (idSkill) => {
         .update({ active: false });
 };
 
+
+
+
 module.exports = {
     createSkill,
     getAllSkill,
     getSkillById,
     updateSkill,
-    logicDeleteSkill
+    logicDeleteSkill,
+
 }
