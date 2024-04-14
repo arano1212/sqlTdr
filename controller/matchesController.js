@@ -1,6 +1,6 @@
 const matchesModels = require('../models/matches')
 
-const createMatchController =  async (req, res) =>{
+const createMatchController = async (req, res) => {
     try {
         const match = req.body;
         const newMatch = await matchesModels.createMatch(match)
@@ -11,7 +11,7 @@ const createMatchController =  async (req, res) =>{
     }
 };
 
-const getAllMatchsController = async (req, res) =>{
+const getAllMatchsController = async (req, res) => {
     try {
         const allMatches = await matchesModels.getAllMatches()
         res.status(200).json(allMatches)
@@ -21,7 +21,7 @@ const getAllMatchsController = async (req, res) =>{
     }
 };
 
-const getOneMatchsController = async(req, res) =>{
+const getOneMatchsController = async (req, res) => {
     try {
         const idMatch = req.params.id
         const match = await matchesModels.getOneMatch(idMatch)
@@ -36,7 +36,7 @@ const getOneMatchsController = async(req, res) =>{
     }
 };
 
-const updateMatchController = async(req, res)=>{
+const updateMatchController = async (req, res) => {
     try {
         const idMatch = req.params.id
         const bodyToUpdate = req.body
@@ -51,7 +51,7 @@ const updateMatchController = async(req, res)=>{
 const logicDeleteMatchController = async (req, res) => {
     try {
         const idMatch = req.params.id;
-        await matchesModels.logicDeleteMatch(idMatch); 
+        await matchesModels.logicDeleteMatch(idMatch);
         res.status(204).json();
     } catch (error) {
         console.error(error);
@@ -59,10 +59,32 @@ const logicDeleteMatchController = async (req, res) => {
     }
 };
 
-module.exports={
+const getMatchController = async (req, res) => {
+    try {
+        const allMatches = await matchesModels.getMatches()
+        res.status(200).json(allMatches)
+    } catch (error) {
+        console.error(error)
+        res.status(400).json({ message: 'error en la solicitud' })
+    }
+};
+
+const getMatchstatusController = async (req, res) => {
+    try {
+        const allMatches = await matchesModels.getMatchesStatus()
+        res.status(200).json(allMatches)
+    } catch (error) {
+        console.error(error)
+        res.status(400).json({ message: 'error en la solicitud' })
+    }
+};
+
+module.exports = {
     createMatchController,
     getAllMatchsController,
     getOneMatchsController,
     updateMatchController,
-    logicDeleteMatchController
+    logicDeleteMatchController,
+    getMatchController,
+    getMatchstatusController
 }

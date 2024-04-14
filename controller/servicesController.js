@@ -60,11 +60,45 @@ const logicDeleteServiceController = async (req, res) => {
     }
 };
 
+const getUserSkillsController = async (req, res) =>{
+    try {
+        const userSkills = await matchServicesModels.getSkillsUser()
+        res.status(200).json(userSkills)
+    } catch (error) {
+        console.error(error)
+        res.status(400).json({ message: 'error en la solicitud' })
+    }
+};
+
+const getOneUserSkillsController = async (req, res) =>{
+    try {
+        const idUser= req.params.id
+        const userSkills = await matchServicesModels.getSkillByUSerId(idUser)
+        res.status(200).json(userSkills)
+    } catch (error) {
+        console.error(error)
+        res.status(400).json({ message: 'error en la solicitud' })
+    }
+};
+
+const getPendingController = async (req, res) =>{
+    try {
+        const userServices= await matchServicesModels.getPendingServices()
+        res.status(200).json(userServices)
+    } catch (error) {
+        console.error(error)
+        res.status(400).json({ message: 'error en la solicitud' })
+    }
+};
+
 module.exports={
     createServiceController,
     getAllServiceController,
     getOneServiceController,
     updateserviceController,
-    logicDeleteServiceController
+    logicDeleteServiceController,
+    getUserSkillsController,
+    getOneUserSkillsController,
+    getPendingController
 
 }

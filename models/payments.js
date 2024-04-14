@@ -30,20 +30,38 @@ const updatePay = (idPay, bodyToUpdate) => {
         .returning('*')
 };
 
-const logicDeletePay =(idPay)=>{
+const logicDeletePay = (idPay) => {
     return payment
-    .update({active: false})
-    .from('payments')
-    .where({pay_id: idPay, active: true})  
+        .update({ active: false })
+        .from('payments')
+        .where({ pay_id: idPay, active: true })
+}
+
+const getInfo = () => {
+    return payment
+    .select(
+        'users.username AS user_name',
+        'skills.name AS skill_name',
+        'services.duration_hours',
+        'services.status',
+        'payments.amount',
+        'payments.payment_date'
+    )
+    .from('services')
+    .join('users', 'services.provider_id', '=', 'users.user_id')
+    .join('skills', 'services.skill_id', '=', 'skills.skill_id' )
+    .join('payments', 'services.id', '=', 'payments.service_id')
 }
 
 
 
-module.exports={
+module.exports = {
     createPay,
     getAllPays,
     getOnePay,
     updatePay,
-    logicDeletePay
+    logicDeletePay,
+    getInfo
+
 
 }

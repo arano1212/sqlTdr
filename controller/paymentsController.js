@@ -59,12 +59,22 @@ const logicDeletePayController = async (req, res) => {
     }
 };
 
+const getInfoController = async (req, res) =>{
+    try {
+        const info = await matchPaymentsModels.getInfo()
+        res.status(200).json(info)
+    } catch (error) {
+        console.error(error)
+        res.status(400).json({ message: 'error en la solicitud' })
+    }
+};
 
 module.exports={
     createPayController,
     getAllPaysController,
     getOnePayController,
     updatePayController,
-    logicDeletePayController
+    logicDeletePayController,
+    getInfoController
 
 }
