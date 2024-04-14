@@ -79,6 +79,16 @@ const getMatchstatusController = async (req, res) => {
     }
 };
 
+const getcompleteInfoController = async (req, res) => {
+    try {
+        const allInfo= await matchesModels.getCompleteInfo()
+        res.status(200).json(allInfo)
+    } catch (error) {
+        console.error(error)
+        res.status(400).json({ message: 'error en la solicitud' })
+    }
+};
+
 module.exports = {
     createMatchController,
     getAllMatchsController,
@@ -86,5 +96,6 @@ module.exports = {
     updateMatchController,
     logicDeleteMatchController,
     getMatchController,
-    getMatchstatusController
+    getMatchstatusController,
+    getcompleteInfoController
 }

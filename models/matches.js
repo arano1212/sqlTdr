@@ -64,7 +64,32 @@ const getMatchesStatus = ()=>{
     .join('users AS users_employer', 'users_employer.user_id', '=', 'matches.employer_id')
     .join('skills', 'skills.skill_id', '=', 'matches.skill_id')
     .where('matches.status', '=', 'accepted');
+};
+
+const getCompleteInfo = () => {
+    return match
+        .select(
+            'provider.username AS provider_name',
+            'employer.username AS employer_name',
+            'skills.name AS skill_name',
+            'services.duration_hours',
+            'services.status AS service_status',
+            'payments.amount',
+            'payments.payment_date',
+            'matches.status AS match_status'
+        )
+        .from('services')
+        .join('users AS provider', 'services.provider_id', '=', 'provider.user_id')
+        .join('users AS employer', 'services.employer_id', '=', 'employer.user_id')
+        .join('skills', 'services.skill_id', '=', 'skills.skill_id')
+        .join('payments', 'services.id', '=', 'payments.service_id')
+        .join('matches', function() {
+            this.on('matches.provider_id', '=', 'provider.user_id')
+                .andOn('matches.employer_id', '=', 'employer.user_id')
+                .andOn('matches.skill_id', '=', 'skills.skill_id')
+        });
 }
+
 
 
 module.exports={
@@ -74,6 +99,7 @@ module.exports={
     updateMatch,
     logicDeleteMatch,
     getMatches,
-    getMatchesStatus
+    getMatchesStatus,
+    getCompleteInfo
     
 }
